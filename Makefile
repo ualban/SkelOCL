@@ -2,8 +2,6 @@
 ERL_INCLUDE =  /usr/local/lib/erlang/erts-5.10.4/include/
 OPENCL_LIB = /opt/AMDAPP/lib/x86_64
 
-#ERL_INCLUDE   = /home/albanese/erlang/lib/erlang/erts-6.2/include/
-#OPENCL_LIB = /opt/intel/opencl-1.2-3.1.1.11385/include/CL/
 OPENCLFLAGS = -DCL_USE_DEPRECATED_OPENCL_1_1_APIS -L$(OPENCL_LIB) -lOpenCL
 LIBFLAGS = -fpic -shared -std=c++11
 NVIDIA = -DNVIDIA
