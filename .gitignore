@@ -1,4 +1,8 @@
 
+.cproject
+.DS_Store
+.project
+.settings/
 *~
 
 # Compiled Object files
