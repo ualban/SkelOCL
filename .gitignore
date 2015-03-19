@@ -1,0 +1,26 @@
+
+*~
+
+# Compiled Object files
+*.o
+*.obj
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Executables
+*.exe
+*.out
+*.app
+
+#Erlang
+.eunit
+deps
+*.o
+*.beam
+*.plt
+erl_crash.dump
+.concrete/DEV_MODE
+.rebar
