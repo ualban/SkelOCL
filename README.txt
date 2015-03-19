@@ -12,6 +12,7 @@ Erlang and OpenCL are required.
 1.Set the Makefile:
 - Set the ERL_INCLUDE variable to the directory containing Erlang's include files
 - Set the OPENCL_LIB variable to the OpenCL library directory
+- Set the OPENCL_INCLUDE variable to the directory containing CL.h
 
 2.Once the variables are set up, just launch make.
 The default target builds both the erlang part (into ebin/) and the NIF .so (skel_ocl.so).
@@ -22,7 +23,7 @@ If the root directory is the current:
 export ERL_LIBS=`pwd`
 
 4.We need also to make skel_ocl.so available to the loader, since Erlang VM will need it at runtime.
-export LD_LIBRARY_PATH=`pwd`
+export LD_LIBRARY_PATH=`pwd`:$LD_LIBRARY_PATH
 
 
 -----------USAGE EXAMPLE--------------
