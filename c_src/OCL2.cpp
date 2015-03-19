@@ -23,7 +23,6 @@ cl_context CreateContext()
 	cl_int errNum;
 	cl_uint numPlatforms;
 
-	//TODO works on titanic.di.unipi.it, hardcoded!! parametrize!!
 	cl_platform_id* platformIds;
 
 	cl_context context = NULL;
