@@ -1,8 +1,10 @@
+/**
+ * A thread synchronization barrier implemented using erl_nif synch facilities
+ * /
 class Barrier {
 
 private:
 	uint N_THREADS;
-	//uint waiting_threads;
 
 	uint waiting_threads_counts[2];
 	uint current_counter;
@@ -67,7 +69,7 @@ uint list_to_double_arrayN(ErlNifEnv *env, ERL_NIF_TERM list, double* array, uin
 
 	uint len = 0;
 
-	if(enif_is_list(env, list)) { //enif_get_list_length(env, list, &len) <---- O(n)!!!
+	if(enif_is_list(env, list)) {
 
 		ERL_NIF_TERM curr_cell = list;
 
@@ -88,7 +90,7 @@ uint list_to_double_arrayN(ErlNifEnv *env, ERL_NIF_TERM list, double* array, uin
 		if(lastListCell != NULL) //user requested the term denoting the last cell
 			*lastListCell = curr_cell;
 
-		return i; //TODO check for off by one
+		return i;
 
 	} else { //term "list" is not a list
 
@@ -105,23 +107,10 @@ uint sync_list_to_double_arrayN(ErlNifEnv *env, ErlNifMutex *mtx, ERL_NIF_TERM l
 
 	enif_mutex_lock(mtx);
 
-//	char msg[256];
-//	sprintf(msg, "DEBUG: sync_list_to_double_arrayN dentro. *lastListCell: %lu\n", *lastListCell);
-//	cerr<< msg;
-//
 	uint result = list_to_double_arrayN(env, list, array,  arrayLen, lastListCell);
-//
-//	cerr << "[";
-//	for(int i = 0; i< arrayLen; ++i)
-//		cerr << array[i] << ", ";
-//	cerr << "]"<< endl;
-//
-//	sprintf(msg, "DEBUG: sync_list_to_double_arrayN dentro. *lastListCell: %lu\n", *lastListCell);
-//	cerr << msg;
 
 	enif_mutex_unlock(mtx);
-
-
+	
 	return result;
 
 }
@@ -179,7 +168,6 @@ string readFromFileStr(char* filePath) {
  * otherwise NULL.
  * The returned sting must be enif_free'd when not needed.
  * */
-
 char* readFromFile(char* filePath) {
 
 	string srcStdStr = readFromFileStr(filePath);
@@ -191,16 +179,12 @@ char* readFromFile(char* filePath) {
 }
 
 
-
 #define MIN(a, b) ((a < b) ? a : b)
 
 int inline isPow2(unsigned int v) { return v && !(v & (v - 1));}
 
-/*!
- * \brief A helper to return a value that is nearest value that is power of 2.
- *
- * \param x The input number for which we need to find the nearest value that is power of 2.
- * \return The nearest value that is power of 2.
+/*
+ * Return a value that is nearest value that is power of 2.
  */
 unsigned int nextPow2( unsigned int x )
 {
@@ -244,13 +228,10 @@ void getNumBlocksAndThreads(int n, int maxBlocks, int maxThreads, long unsigned 
         	blocks = MIN(maxBlocks, blocks);
 }
 
-/*!
+/*
  *  It finds all instances of a string in another string and replaces it with
  *  a third string.
  *
- *  \param text A \p std::string which is searched.
- *  \param find The \p std::string which is searched for and replaced.
- *  \param replace The replacement \p std::string.
  */
 void replaceTextInString(std::string& text, std::string find, std::string replace)
 {
