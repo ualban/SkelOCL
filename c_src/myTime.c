@@ -1,11 +1,3 @@
-/*
- * myTime.h
- *
- *  Created on: 14/apr/2014
- *      Author: alban
- */
-
-
 #include "myTime.h"
 
 /** end - start */
