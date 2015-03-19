@@ -1,6 +1,6 @@
 /**
  * A thread synchronization barrier implemented using erl_nif synch facilities
- * /
+ */
 class Barrier {
 
 private:
