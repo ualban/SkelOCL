@@ -115,7 +115,7 @@ uint sync_list_to_double_arrayN(ErlNifEnv *env, ErlNifMutex *mtx, ERL_NIF_TERM l
 
 }
 
-void list_to_double_array(ErlNifEnv *env, ERL_NIF_TERM list, uint listLen, double* array) { //TODO scorre la lista 2 volte
+void list_to_double_array(ErlNifEnv *env, ERL_NIF_TERM list, uint listLen, double* array) {
 
 	if(array == NULL)
 		return;
