@@ -135,9 +135,7 @@ cl_context CreateContext()
 			NULL, NULL, &errNum);
 	if (errNum != CL_SUCCESS)
 	{
-//#ifdef DEBUG
 		std::cerr << "No GPU is available on the platform, falling back to CPU" << std::endl;
-//#endif
 		context = clCreateContextFromType(contextProperties, CL_DEVICE_TYPE_CPU,
 				NULL, NULL, &errNum);
 		if (errNum != CL_SUCCESS)
@@ -146,10 +144,6 @@ cl_context CreateContext()
 			return NULL;
 		}
 	}
-//	else {
-//		std::cerr << " Working with" << std::endl;
-//
-//	}
 
 	return context;
 }
@@ -317,11 +311,6 @@ void Cleanup_static(/*cl_context _context, cl_command_queue _commandQueue*/)
 }
 
 
-/*
- * -Context
- * -CommandQueue
- * -clBuildProgram, clCreateKernel
- */
 bool init()
 {
 	// Create an OpenCL context on first available platform
@@ -346,9 +335,6 @@ bool init()
 #ifdef DEBUG
 	std::cerr << "OpenCL CommandQueue created." << std::endl;
 #endif
-
-
-
 
 	return true;
 }
