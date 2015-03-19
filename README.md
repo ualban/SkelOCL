@@ -17,7 +17,7 @@ Erlang and OpenCL are required.
 The default target builds both the erlang part (into ebin/) and the NIF .so (skel_ocl.so).
 
 3.Make sure Erlang finds the skel_ocl/ebin directory.
-To do that, one way is to set the ERL_LIBS env variable to skel_ocl root directory (the one to which this readme belongs).
+To do that, one way is to set the ERL_LIBS env variable to the skel_ocl root directory (the one to which this readme belongs).
 If the root directory is the current:
 export ERL_LIBS=`pwd`
 
