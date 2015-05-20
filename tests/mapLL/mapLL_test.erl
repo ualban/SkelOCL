@@ -41,7 +41,6 @@ main(ocl, N_ELEM_EXP_POW2) ->
 	ocl_mapLL(erl_utils:pow2(N_ELEM_EXP_POW2))
 	;
 main(erl, N_ELEM_EXP_POW2) ->
-	skel_ocl:cl_init(),
 	erl_mapLL(erl_utils:pow2(N_ELEM_EXP_POW2))
 	;
 main(compare, N_ELEM_EXP_POW2) ->

@@ -31,7 +31,6 @@ main(ocl, N_ELEM_EXP_POW2) ->
 	ocl_integr_test(10, 20, erl_utils:pow2(N_ELEM_EXP_POW2))
 	;
 main(erl, N_ELEM_EXP_POW2) ->
-	skel_ocl:cl_init(),
 	erl_integr_test(10, 20, erl_utils:pow2(N_ELEM_EXP_POW2))
 ;
 main(compare, N_ELEM_EXP_POW2) ->

@@ -43,7 +43,6 @@ main(ocl, N_ELEM_EXP_POW2) ->
 	ocl_dotProduct_test(erl_utils:pow2(N_ELEM_EXP_POW2))
 	;
 main(erl, N_ELEM_EXP_POW2) ->
-	skel_ocl:cl_init(),
 	erl_dotProduct_test(erl_utils:pow2(N_ELEM_EXP_POW2))
 .
 
