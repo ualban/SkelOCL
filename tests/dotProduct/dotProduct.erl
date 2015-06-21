@@ -7,7 +7,8 @@
 		erl_dotProduct_test/1,
 		erl_dotProduct/2,
 		
-		main/2
+		main/2,
+		test/1
 		]).
 
 -import(erl_utils, 
@@ -33,7 +34,7 @@
 %% c(skel_ocl),
 %% skel_ocl:cl_init(),
 %% c(erl_utils),
-%% cd(tests),
+%% cd("tests/dotProduct"),
 %% c(dotProduct),
 %% dotProduct:ocl_dotProduct_test(erl_utils:pow2(10)).
 
@@ -45,6 +46,48 @@ main(ocl, N_ELEM_EXP_POW2) ->
 main(erl, N_ELEM_EXP_POW2) ->
 	erl_dotProduct_test(erl_utils:pow2(N_ELEM_EXP_POW2))
 .
+
+
+generate_input(NumVal,Val) ->
+	V1 = [ X+0.0 || X <- lists:seq(0,NumVal-1) ],
+	V2 = [ X+0.0 || X <- lists:duplicate(NumVal,Val) ],
+	
+	[V1,V2]
+	.
+
+
+%% computation correctness test
+
+test(NumVal) ->
+	
+	%% must be a power of 2
+	case isPow2(NumVal) of 
+		false -> erlang:error(input_not_pow2);
+		true -> ok 
+	end,
+	
+	io:format("~n-------dotProduct TEST-------~n"),
+	
+	
+	io:format("Generating input...~n"),
+ 	Val = 2,
+	[V1,V2] = generate_input(NumVal,Val),
+	
+	
+	io:format("~nComputing: OCL...~n"),
+	[OCL_Result] = ocl_dotProduct(NumVal, V1, V2),
+	
+	io:format("~nComputing: ERL...~n"),
+	ERL_Result = erl_dotProduct(V1, V2),
+
+	io:format("~nTest..."),
+	
+	if
+		OCL_Result == ERL_Result -> io:format("PASSED!~n"); 
+		true -> io:format("~nERROR. FAILED!!~n")
+	end
+.
+
 
 
 ocl_dotProduct(NumVal, V1, V2) ->
@@ -89,8 +132,7 @@ ocl_dotProduct_test(NumVal) ->
 	io:format("~n-------ocl_dotProduct TEST-------~n"),
 	io:format("Vectors' dimension: ~w~nV1 = seq(0,~w)~nV2 = duplicate(~w,~w): ~n~n", [NumVal, NumVal-1, NumVal, Val]),
 	
-	V1 = [ X+0.0 || X <- lists:seq(0,NumVal-1) ],
-	V2 = [ X+0.0 || X <- lists:duplicate(NumVal,Val) ],
+	[V1,V2] = generate_input(NumVal,Val),
 	
 %% 	F_start = now(),
 %% 
@@ -130,8 +172,8 @@ erl_dotProduct_test(NumVal) ->
 	io:format("~n-------erl_dotProduct TEST-------~n"),
 	io:format("Vectors' dimensions: ~w~nV1:seq(0,~w)~nV2:duplicate(~w,~w): ~n", [NumVal, NumVal-1, NumVal, Val]),
 	io:format("Delay: ~w~n~n", [?ERL_DELAY]),
-	V1 = [ X+0.0 || X <- lists:seq(0,NumVal-1) ],
-	V2 = [ X+0.0 || X <- lists:duplicate(NumVal,Val) ],
+	
+	[V1,V2] = generate_input(NumVal,Val),
 	
 %% 	F_start = now(),
 %% 
