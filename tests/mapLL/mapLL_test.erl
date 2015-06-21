@@ -49,8 +49,11 @@ main(compare, N_ELEM_EXP_POW2) ->
 	
 	skel_ocl:cl_init(),
 	
+	io:format("~n-------mapLL COMPARE mode-------~n"),
+	
 	L1 = [ X+0.0 || X <- lists:seq(1, NumVal) ],
 	
+	io:format("~nComputing: ERL...~n"),
 	ERL = lists:map(fun sq/1, L1),
 	
 	MapSqKernel = 
@@ -58,10 +61,19 @@ main(compare, N_ELEM_EXP_POW2) ->
 		  skel_ocl:createMapKernel("sq.cl", "sq")
 		),
 	
+	io:format("~nComputing: OCL...~n"),
 	OCL = 
 		skel_ocl:checkResult(skel_ocl:mapLL(MapSqKernel, L1, NumVal)),
 	
-	erl_utils:equalsLists(ERL, OCL)
+	
+	io:format("~nTest..."),
+	
+	{CompRes, _} = erl_utils:equalsLists(ERL, OCL),
+
+	case CompRes of
+		true -> io:format("PASSED!~n"); 
+		false -> io:format("~nERROR. FAILED!!~n")
+	end
 .
 
 

@@ -7,8 +7,7 @@
 		erl_dotProduct_test/1,
 		erl_dotProduct/2,
 		
-		main/2,
-		test/1
+		main/2
 		]).
 
 -import(erl_utils, 
@@ -46,9 +45,9 @@ main(ocl, N_ELEM_EXP_POW2) ->
 main(erl, N_ELEM_EXP_POW2) ->
 	erl_dotProduct_test(erl_utils:pow2(N_ELEM_EXP_POW2))
 	;
-main(test, N_ELEM_EXP_POW2) ->
+main(compare, N_ELEM_EXP_POW2) ->
 	skel_ocl:cl_init(),
-	test(erl_utils:pow2(N_ELEM_EXP_POW2))
+	compare(erl_utils:pow2(N_ELEM_EXP_POW2))
 .
 
 generate_input(NumVal,Val) ->
@@ -56,12 +55,12 @@ generate_input(NumVal,Val) ->
 	V2 = [ X+0.0 || X <- lists:duplicate(NumVal,Val) ],
 	
 	[V1,V2]
-	.
+.
 
 
 %% computation correctness test
 
-test(NumVal) ->
+compare(NumVal) ->
 	
 	%% must be a power of 2
 	case isPow2(NumVal) of 
@@ -69,8 +68,7 @@ test(NumVal) ->
 		true -> ok 
 	end,
 	
-	io:format("~n-------dotProduct TEST-------~n"),
-	
+	io:format("~n-------dotProduct COMPARE mode-------~n"),
 	
 	io:format("Generating input...~n"),
  	Val = 2,

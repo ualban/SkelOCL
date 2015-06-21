@@ -34,6 +34,9 @@ main(erl, N_ELEM_EXP_POW2) ->
 	erl_integr_test(10, 20, erl_utils:pow2(N_ELEM_EXP_POW2))
 ;
 main(compare, N_ELEM_EXP_POW2) ->
+	skel_ocl:cl_init(),
+	io:format("~n-------Integration COMPARE mode-------~n"),
+	
 	A = 10, B = 20,
 	
 	N_nodes = erl_utils:pow2(N_ELEM_EXP_POW2),
@@ -41,15 +44,20 @@ main(compare, N_ELEM_EXP_POW2) ->
 	Nodes_list = generate_nodes(A, B, N_nodes),
 	
 	%ERLANG
+	io:format("~nComputing: ERL...~n"),
 	ERL = integrate(erl, fun integrandFun/1, A, B, {Nodes_list, N_nodes}),
 	
-	
-	skel_ocl:cl_init(),
-	
+	io:format("~nComputing: OCL...~n"),
 	OCL = integrate(ocl, "f_integrand", A, B, {Nodes_list, N_nodes}),
 	
 %% 	io:format("ERL:~w, OCL:~w", [ERL,OCL])
-	ERL =:= OCL
+	
+	io:format("~nTest..."),
+	
+	if
+		ERL == OCL -> io:format("PASSED!~n"); 
+		true -> io:format("~nERROR. FAILED!!~n")
+	end
 .
 
 	
