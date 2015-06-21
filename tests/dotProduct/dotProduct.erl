@@ -45,8 +45,10 @@ main(ocl, N_ELEM_EXP_POW2) ->
 	;
 main(erl, N_ELEM_EXP_POW2) ->
 	erl_dotProduct_test(erl_utils:pow2(N_ELEM_EXP_POW2))
+	;
+main(test, N_ELEM_EXP_POW2) ->
+	test(erl_utils:pow2(N_ELEM_EXP_POW2))
 .
-
 
 generate_input(NumVal,Val) ->
 	V1 = [ X+0.0 || X <- lists:seq(0,NumVal-1) ],
