@@ -1,5 +1,5 @@
-#!/usr/bin/escript -c
-%%! -smp enable -sname mapLL_test  -pa ../../ebin
+#!/usr/bin/env escript
+%%! -c -smp enable -sname mapLL_test  -pa ../../ebin
 
 main([TYPE, N_ELEM_EXP_POW2 | []]) ->
 %%	io:format("~p",[code:get_path()])
