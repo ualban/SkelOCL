@@ -17,13 +17,11 @@ Erlang and OpenCL are required.
 2.Once the variables are set up, just launch make.
 The default target builds both the erlang part (into ebin/) and the NIF .so (skel_ocl.so).
 
-3.Make sure Erlang finds the skel_ocl/ebin directory.
-To do that, one way is to set the ERL_LIBS env variable to the skel_ocl root directory (the one to which this readme belongs).
-If the root directory is the current:
-export ERL_LIBS=`pwd`
+3.Set an environment variable to skel_ocl installation path (from the directory this readme belongs to):
+export SKEL_OCL_DIR=`pwd`
 
-4.We need also to make skel_ocl.so available to the loader, since Erlang VM will need it at runtime.
-export LD_LIBRARY_PATH=`pwd`:$LD_LIBRARY_PATH
+4, Let the skel_ocl_setup.bash script do the rest:
+source skel_ocl_setup.bash
 
 
 -----------USAGE EXAMPLE--------------
@@ -47,4 +45,6 @@ ok
 
 NOTE: Using the default make target, Skel OCL is built so to look for NVIDIA GPUs during initialization (skel_ocl:cl_init()).
 In case no NVIDIA GPUs are found, initialization fails.
-This can be avoided building Skel OCL with make DEFAULT. Using the DEFAULT target, the behavior is the following: look for the first OpenCL platform available and prefer GPU devices over CPU.
+This can be avoided building Skel OCL with make DEFAULT.
+Using the DEFAULT target, the behavior is the following: 
+look for the first OpenCL platform available and prefer GPU devices over CPU.
