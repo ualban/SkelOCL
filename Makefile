@@ -9,9 +9,9 @@
 #OPENCL_INCLUDE = /opt/AMDAPPSDK-2.9-1/include/
 
 #UBUNTU VM
-ERL_INCLUDE = /usr/local/lib/erlang/erts-5.10.4/include/
-OPENCL_LIB = /opt/AMDAPP/lib/x86_64
-OPENCL_INCLUDE = /opt/AMDAPP/include/
+#ERL_INCLUDE = /usr/local/lib/erlang/erts-5.10.4/include/
+#OPENCL_LIB = /opt/AMDAPP/lib/x86_64
+#OPENCL_INCLUDE = /opt/AMDAPP/include/
 
 #pianosa
 #ERL_INCLUDE =  /home/albanese/erlang/lib/erlang/erts-6.2/include/
