@@ -1,4 +1,4 @@
-#define DELAY_LOOPS 00
+#define DELAY_LOOPS 10
 
 void delay() {
 	double v = 2.0;

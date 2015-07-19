@@ -10,7 +10,7 @@
 
 -import(erl_utils, [for/3,dummyLoadLoop/2]).
 
--define(ERL_DELAY, 10).
+-define(ERL_DELAY, 40).
 %%-------Example: Integration-------
 %%
 %%Compute numerical integral (using the midpoint method) using map and reduce.
@@ -55,7 +55,7 @@ main(compare, N_ELEM_EXP_POW2) ->
 	io:format("~nTest..."),
 	
 	if
-		ERL == OCL -> io:format("PASSED!~n"); 
+		trunc(ERL) == trunc(OCL) -> io:format("PASSED!~n"); 
 		true -> io:format("~nERROR. FAILED!!~n")
 	end
 .
