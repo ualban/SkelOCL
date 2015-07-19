@@ -20,7 +20,7 @@ The default target builds both the erlang part (into ebin/) and the NIF .so (ske
 3.Set an environment variable to skel_ocl installation path (from the directory this readme belongs to):
 export SKEL_OCL_DIR=`pwd`
 
-4, Let the skel_ocl_setup.bash script do the rest:
+4.Let the skel_ocl_setup.bash script do the rest:
 source skel_ocl_setup.bash
 
 
