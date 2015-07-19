@@ -16,7 +16,7 @@
  		 dummyLoadLoop/2
 		]).
 
--define(ERL_DELAY, 10).
+-define(ERL_DELAY, 40).
 
 %%-------Example: Map from list to list-------
 %%
